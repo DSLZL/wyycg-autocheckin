@@ -2,6 +2,7 @@ import sys
 import requests as r
 import json
 import os
+from security import safe_requests
 
 tele_enable = False
 sc_enable = False
@@ -59,7 +60,7 @@ def getme(url, cookie):
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja-JP;q=0.6,ja;q=0.5'
     }
-    result = r.get(url=url, headers=header)
+    result = safe_requests.get(url=url, headers=header)
     return result
 
 if __name__ == "__main__":
