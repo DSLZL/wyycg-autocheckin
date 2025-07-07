@@ -2,6 +2,7 @@ import sys
 import requests as r
 import json
 import telepot
+from security import safe_requests
 
 tele_enable = False
 sc_enable = False
@@ -85,7 +86,7 @@ def getme(url, cookie):
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja-JP;q=0.6,ja;q=0.5'
     }
-    result = r.get(url=url, headers=header)
+    result = safe_requests.get(url=url, headers=header)
     return result
 
 
@@ -101,21 +102,21 @@ def scsend(SCKEY, message):
     sc_url = 'http://sctapi.ftqq.com/{}.send?title=网易云游戏自动签到脚本&desp={}'.format(SCKEY, message)
     if sc_enable:
         print('正在使用ServerChan进行消息推送……')
-        r.get(url=sc_url)
+        safe_requests.get(url=sc_url)
         print('ServerChan消息推送完成！')
         
 def qqsend(QQKEY, message):
     qq_url = 'https://push.xuthus.cc/send/{}?c=网易云游戏自动签到脚本\n{}'.format(QQKEY, message)
     if qq_enable:
         print('正在进行QQ消息推送……')
-        r.get(url=qq_url)
+        safe_requests.get(url=qq_url)
         print('QQ消息推送完成！')
 
 def ppsend(PPKEY, message):
     pp_url = 'http://pushplus.hxtrip.com/send?token={}&title=网易云游戏自动签到脚本&content={}&template=html'.format(PPKEY, message)
     if pp_enable:
         print('正在使用PushPlus进行消息推送……')
-        r.get(url=pp_url)
+        safe_requests.get(url=pp_url)
         print('PushPlus消息推送完成')
 
 if __name__ == "__main__":
