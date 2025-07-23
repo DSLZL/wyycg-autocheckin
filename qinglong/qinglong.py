@@ -39,7 +39,7 @@ def signin(url, cookie):
         'X-Platform': '0'
     }
 
-    result = r.post(url=url, headers=header)
+    result = r.post(url=url, headers=header, timeout=60)
     return result
 
 
@@ -59,7 +59,7 @@ def getme(url, cookie):
         'Accept-Encoding': 'gzip, deflate, br',
         'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7,ja-JP;q=0.6,ja;q=0.5'
     }
-    result = r.get(url=url, headers=header)
+    result = r.get(url=url, headers=header, timeout=60)
     return result
 
 if __name__ == "__main__":
